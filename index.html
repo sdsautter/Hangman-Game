@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- This makes the page auto refresh -->
+    <!-- <meta http-equiv="refresh" content="5"> -->
+    <title>NES Classic Edition Hangman
+    </title>
+    <link rel="icon" href="assets/images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="container-fluid">
+            <div class="row" align="center">
+                <div class="col-12">
+                    <h1>NES Classic Edition Hangman!</h1>
+	                </div>
+            </div>
+            <br>
+            <div class="row" align="center">
+                <div class="col-sm-4 offset-sm-2 col-xs-12">
+                    <div id="hangmanImg">
+                        <h2>Box Art</h2>
+                        <br>
+                        <span id="boxArt"> </span>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                    <div id="hangmanGame">
+                        <div class="row">
+	                        <div class="col-12">	
+								<h2>The Game of Games</h2>
+	                        </div>
+	                        <div class="col-6 offset-1">
+	                            <h3>Chances Left: <span id="chancesLeft"> </span></h3>
+	                        </div>
+	                        <div class="col-10 offset-1">
+	                        	<h3>Wrong Guesses: <span id="wrongGuesses"> </span></h3>
+	                        </div>
+	                        <div class="col-12">
+	                        	<div id="blankWord"><h1>Word will go here</h1> </div>
+	                        </div>
+	                        <div class="col-5 offset-1">
+	                        	<h3>Wins: <span id="wins"> </span></h3>
+	                        </div>
+	                        <div class="col-5">
+	                        	<h3>Losses: <span id="losses"> </span></h3>
+	                        </div>
+	                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+<script src="assets/js/jquery-3.1.1.min.js"></script>
+<script src="assets/js/tether.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script  id="didntExpectDb" src="assets/js/db.js"></script>
+<script src="assets/js/javascript.js"></script>
+
+</html>

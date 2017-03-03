@@ -1,0 +1,41 @@
+@font-face { font-family: Nintendo; src: url('../fonts/Nintender (WIP).ttf'); }
+@font-face { font-family: Zelda; src: url('../fonts/Triforce.ttf'); }
+@font-face { font-family: Mario; src: url('../fonts/Super Plumber Brothers.ttf'); }
+
+body {
+	background-image: url('../images/bg-stars.jpg');
+	color: fuchsia;
+}
+
+h1 {
+	font-family: Nintendo;
+	color: #8d734a ;
+	padding-top: 1%;
+}
+
+h2 {
+	font-family: Zelda;
+	color: white;
+/*	font-size: 2.5em;
+*/}
+
+h3, h4, h5 {
+	font-family: Mario;
+	background-color: #d44a00;
+	color: #fec3b7;
+	text-shadow: 0 3px black;
+
+}
+
+#hangmanGame h3 {
+	padding: 8%;
+
+}
+
+#hangmanGame, #hangmanImg {
+	border: 1px solid white;
+}
+
+#boxArt img {
+	width: 100%;
+}
