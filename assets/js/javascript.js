@@ -144,7 +144,7 @@ var hangman = {
 		displayLosses.innerHTML = losses;
 		chancesLeft.innerHTML = guessesLeft;
 
-	}
+	},
 
 	wrongGuess: function() {
 		guessesLeft = guessesLeft - 1;
@@ -152,8 +152,8 @@ var hangman = {
 		incorrectGuesses.push(key);
 		for (var i = 0; i < incorrectGuesses.length; i++) {
 			displayCorrectGuesses.innerHTML = incorrectGuesses;
-		}
-	} 
+		};
+	},
 
 	correctGuess: function() {
 		correctGuess.push(key);
