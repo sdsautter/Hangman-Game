@@ -149,10 +149,11 @@ var hangman = {
 	wrongGuess: function() {
 		guessesLeft = guessesLeft - 1;
 		chancesLeft.innerHTML = guessesLeft;
-		incorrectGuesses.push(key);
+		// incorrectGuesses.push(key);
 		for (var i = 0; i < incorrectGuesses.length; i++) {
 			displayCorrectGuesses.innerHTML = incorrectGuesses;
 		};
+		document.getElementById("hungMario").innerHTML = "<img src='assets/images/"+guessesLeft+"-chances-left.png' alt='Hangman Progress'>";
 	},
 
 	correctGuess: function() {
