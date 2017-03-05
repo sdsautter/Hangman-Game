@@ -7,10 +7,15 @@ body {
 	color: white;
 }
 
-h1 {
+h1, p {
 	font-family: Nintendo;
 	color: #8d734a ;
 	padding-top: 1%;
+}
+
+p {
+	text-align: justify-all;
+	font-size: 2em;
 }
 
 h2 {
@@ -26,6 +31,8 @@ h3, h4, h5 {
 	text-shadow: 0 3px black;
 
 }
+
+
 
 #wrongGuesses {
 	font-size: 125%;
@@ -50,4 +57,7 @@ h3, h4, h5 {
 	font-family: Nintendo;
 	font-size: 150%;
 	
+}
+#startBtn img, #resetBtn img {
+	max-width: 100%;
 }

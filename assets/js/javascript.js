@@ -135,6 +135,12 @@ function powerOff() {
 }
 
 function newGame() {
+	gameWord = 0;
+	guessesLeft = 6;
+	blanks = [];
+	correctGuesses = [];
+	incorrectGuesses = [];
+	correctIndex = [];
     displayWins.innerHTML = wins;
     displayLosses.innerHTML = losses;
     chancesLeft.innerHTML = guessesLeft;
@@ -171,6 +177,7 @@ function newGame() {
 
 
 function guessCheck(UserGuess) {
+	UserGuess = UserGuess.toLowerCase();
     //This checks to see if the User Guess input was found in the array or not
     if (gameWord.name.toLowerCase().indexOf(UserGuess) >= 0 && correctGuesses.indexOf(UserGuess) < 0) {
         
@@ -188,27 +195,27 @@ function guessCheck(UserGuess) {
         displayCorrectGuesses.textContent = blanks.join(" ");
 
 
-    } else if (gameWord.name.toLowerCase().indexOf(UserGuess) < 0 && alphabetBank.indexOf(UserGuess) >= 0 && incorrectGuesses.indexOf(UserGuess) < 0) {
+    } else if (gameWord.name.indexOf(UserGuess) < 0 && alphabetBank.indexOf(UserGuess) >= 0 && incorrectGuesses.indexOf(UserGuess) < 0) {
         guessesLeft = guessesLeft - 1;
         chancesLeft.innerHTML = guessesLeft;
         document.getElementById("hungMario").innerHTML = "<img src='assets/images/" + guessesLeft + "-chances-left.png' alt='Hangman Progress'>";
-        if (guessesLeft > 0) {
-            incorrectGuesses.push(UserGuess);
-            displayIncorrectGuesses.innerHTML = incorrectGuesses.join(", ");
+        incorrectGuesses.push(UserGuess);
+            displayIncorrectGuesses.innerHTML = incorrectGuesses.join(" ");
+       }
+  
+	
 
-        }
-    }
 }
 
 function gameProgress() {
 	
-	if (blanks.indexOf["_"] < 0 ) {
+	if (blanks.indexOf("_") < 0 && chancesLeft > 0) {
 		alert("You Win");
 		wins++;
-		boxArt.innerHTML = 
+		boxArtImage.innerHTML = wordBank.art;
 		newGame();
 	}
-	else if (chancesLeft === 0) {
+	else if (chancesLeft <= 0 && blanks.indexOf("_") >= 0) {
 		losses++;
 		alert("You Lost");
 		chancesLeft = 6;
@@ -223,6 +230,13 @@ document.getElementById("startBtn").onclick = function() {
 		powerOff();
 	}
 
+};
+
+document.getElementById("resetBtn").onclick = function() {
+	if (gameStart === true) {
+		powerOff();
+		newGame();
+	} 
 };
 
 
