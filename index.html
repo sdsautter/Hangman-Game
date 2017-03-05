@@ -19,12 +19,22 @@
             <div class="row" align="center">
                 <div class="col-12">
                     <h1>NES Classic Edition Hangman!</h1>
-	                </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-8 offset-2" id="howTo">
+                    <p>How to Play:</p>
+                    <ul>
+                        <li>Click the power button to start</li>
+                        <li>Type in letters and numbers (2 or 3) to see if it's in the game name</li>
+                        <li>Click Play Again when you win or lose</li>
+                    </ul>
+                </div>
             </div>
             <br>
             <div class="row" align="center">
                 <div class="col-1 offset-3">
-                   <div id="powerLight"><img src="assets/images/power-off.png" alt="power off button"></div>
+                    <div id="powerLight"><img src="assets/images/power-off.png" alt="power off button"></div>
                 </div>
                 <div class="col-2">
                     <div id="startBtn">Power</div>
@@ -35,25 +45,24 @@
             </div>
             <br>
             <div class="row" align="center">
-            	<div class="col-md-6 col-xs-12">
+                <div class="col-md-6 col-xs-12">
                     <div id="hangmanGame">
                         <div class="row">
-	                        <div class="col-12">	
-								<h2>The Game of Games</h2>
-	                        </div>
-	                    </div>
-                        
-                        <div class="row">
-	                        <div class="col-6 offset-1">
-	                            <h3>Chances Left: <span id="chancesLeft"> </span></h3>
-	                        </div>
+                            <div class="col-12">
+                                <h2>The Game of Games</h2>
+                            </div>
                         </div>
                         <div class="row">
-	                        <div class="col-10 offset-1" align="left">
-	                        	<h3>Wrong Guesses: <span id="wrongGuesses"> </span></h3>
-	                        </div>
-	                    </div>
-                        <div class="row">                       
+                            <div class="col-6 offset-1">
+                                <h3>Chances Left: <span id="chancesLeft"> </span></h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-10 offset-1" align="left">
+                                <h3>Wrong Guesses: <span id="wrongGuesses"> </span></h3>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-5 offset-1">
                                 <h3>Wins: <span id="wins"> </span></h3>
                             </div>
@@ -61,45 +70,42 @@
                                 <h3>Losses: <span id="losses"> </span></h3>
                             </div>
                         </div>
-                        <div class="row">	                    
-	                        <div class="col-12">
-	                        	<p><span id="blankWord"> </span></p>
-	                        </div>
-	                    </div>
                         <div class="row">
-	                    	<div class="col-12">
+                            <div class="col-12">
+                                <p><span id="blankWord"> </span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
                                 <div id="boxArt"><img src='assets/images/nes-classic-edition.png' alt='NES Classic'></div>
-							</div>
-						</div>
-	                        
+                            </div>
                         </div>
                     </div>
-                
+                </div>
                 <div class="col-md-6 col-xs-12">
                     <div id="hangmanImg">
                         <div class="row">
                             <div class="col-12">
                                 <h2>Don't Kill Mario</h2>
                             </div>
-                        <br>
+                            <br>
                             <div class="col-12">
                                 <div id="hungMario"></div>
                             </div>
-                           <div class="col-12" id="winOrLose"></div>
-                           <div class="col-4 offset-4" id="playAgain"> </div>
-                        <br>
+                            <div class="col-12" id="winOrLose"></div>
+                            <div class="col-4 offset-4" id="playAgain"></div>
+                            <br>
                         </div>
                     </div>
                 </div>
-              </div>
-               </div>
             </div>
-        
+        </div>
+    </div>
 </body>
 <script src="assets/js/jquery-3.1.1.min.js"></script>
 <script src="assets/js/tether.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
-<script  id="didntExpectDb" src="assets/js/db.js"></script>
+<script id="didntExpectDb" src="assets/js/db.js"></script>
 <script src="assets/js/javascript.js"></script>
 
 </html>

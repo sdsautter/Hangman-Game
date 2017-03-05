@@ -1,6 +1,7 @@
 @font-face { font-family: Nintendo; src: url('../fonts/Nintender (WIP).ttf'); }
 @font-face { font-family: Zelda; src: url('../fonts/Triforce.ttf'); }
 @font-face { font-family: Mario; src: url('../fonts/Super Plumber Brothers.ttf'); }
+@font-face { font-family: PressStart; src: url('../fonts/PressStart2P.ttf'); }
 
 body {
 	background-image: url('../images/bg-stars.jpg');
@@ -32,6 +33,23 @@ h3, h4, h5 {
 
 }
 
+#howTo {
+	border: 2px dotted #8d734a;
+}
+
+#howTo, #howTo p {
+	font-family: PressStart;
+	background-color: black;
+	color: white;
+	text-shadow: 0 3px black;
+	font-size: 1em;
+}
+
+#howTo p {
+	text-align: center;
+	font-size: 1.5em;
+}
+
 
 
 #wrongGuesses {
@@ -41,6 +59,10 @@ h3, h4, h5 {
 #hangmanGame h3 {
 	padding: 8%;
 
+}
+
+#blankWord {
+	background-color: black;
 }
 
 #hangmanGame, #hangmanImg {

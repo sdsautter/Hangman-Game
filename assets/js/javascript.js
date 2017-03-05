@@ -223,7 +223,7 @@ function gameProgress() {
         displayWinOrLose.innerHTML = "You Won!";
         displayPlayagain.innerHTML = "<p>Play Again</p>";
         wins++;
-        boxArtImage.innerHTML = gameWord.art;
+        displayBoxArt.innerHTML = gameWord.art;
     	correctGuesses = [];
     	guessesLeft = 0;
         gameOver = true;
@@ -234,6 +234,7 @@ function gameProgress() {
         displayWinOrLose.innerHTML = "You Lose!";
         displayHungMario.innerHTML = "<img src='assets/images/0-chances-left.png' alt='Hangman Progress'>";
         displayPlayagain.innerHTML = "<p>Play Again</p>";
+        displayBoxArt.innerHTML = "<img src='assets/images/nes-classic-edition.png' alt='NES Classic'>";
         guessesLeft = 6;
         gameOver = true;
         	        
