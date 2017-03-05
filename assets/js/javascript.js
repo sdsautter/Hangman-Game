@@ -100,6 +100,8 @@ var incorrectGuesses = [];
 var correctIndex = [];
 var boxArtImage = document.getElementById("boxArt");
 var alphabetBank = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "2", "3"]
+var gameStart = false;
+
 
 var displayIncorrectGuesses = document.getElementById('wrongGuesses');
 var displayPowerLight = document.getElementById('powerLight');
@@ -108,7 +110,29 @@ var displayWins = document.getElementById('wins');
 var displayLosses = document.getElementById('losses');
 var displayChances = document.getElementById('chancesLeft');
 var displayBoxArt = document.getElementById('boxArt');
+var displayHungMario = document.getElementById('hungMario');
 
+
+function powerOff() {
+	displayPowerLight.innerHTML = "<img src='assets/images/power-off.png' alt='power n'>";
+	displayCorrectGuesses.innerHTML = "";
+	displayIncorrectGuesses.innerHTML = "";
+	displayWins.innerHTML = "";
+	displayLosses.innerHTML = "";
+	displayBoxArt.innerHTML = "<img src='assets/images/nes-classic-edition.png' alt='NES Classic'>";
+	displayChances.innerHTML = "";
+	displayHungMario.innerHTML = "";
+	gameStart = false;
+	gameWord = 0;
+	blanks = [];
+	correctGuesses = [];
+	incorrectGuesses = [];
+	correctIndex = [];
+	wins = 0;
+	losses = 0;
+	guessesLeft = 6;
+
+}
 
 function newGame() {
     displayWins.innerHTML = wins;
@@ -117,6 +141,8 @@ function newGame() {
     gameWord = wordBank[Math.floor(Math.random() * wordBank.length)];
     console.log(gameWord);
     displayPowerLight.innerHTML = "<img src='assets/images/power-on.png' alt='power n'>";
+    gameStart = true;
+
 
 
     for (var i = 0; i < gameWord.name.length; i++) {
@@ -140,7 +166,7 @@ function newGame() {
 
     displayCorrectGuesses.textContent = blanks.join(" ");
 
-    document.getElementById("hungMario").innerHTML = "<img src='assets/images/" + guessesLeft + "-chances-left.png' alt='Hangman Progress'>";
+    displayHungMario.innerHTML = "<img src='assets/images/" + guessesLeft + "-chances-left.png' alt='Hangman Progress'>";
 }
 
 
@@ -155,12 +181,10 @@ function guessCheck(UserGuess) {
             }
         }
 
-        // replace the appropriate blank(s) with the letter
         for (var i = 0; i < correctIndex.length; i++) {
             blanks[correctIndex[i]] = UserGuess;
         }
 
-        // update the display on the web page
         displayCorrectGuesses.textContent = blanks.join(" ");
 
 
@@ -192,10 +216,15 @@ function gameProgress() {
 	}
 }
 
-var toPlay = confirm("Would you like to play?");
-if (toPlay) {
-    newGame();
-}
+document.getElementById("startBtn").onclick = function() {
+	if (gameStart === false) {
+		newGame();
+	} else if (gameStart === true){
+		powerOff();
+	}
+
+};
+
 
 document.onkeyup = function(event) {
     var UserGuess = event.key;
