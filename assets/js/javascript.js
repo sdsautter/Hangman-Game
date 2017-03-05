@@ -143,7 +143,7 @@ function newGame() {
 	correctIndex = [];
     displayWins.innerHTML = wins;
     displayLosses.innerHTML = losses;
-    chancesLeft.innerHTML = guessesLeft;
+    displayChances.innerHTML = guessesLeft;
     gameWord = wordBank[Math.floor(Math.random() * wordBank.length)];
     console.log(gameWord);
     displayPowerLight.innerHTML = "<img src='assets/images/power-on.png' alt='power n'>";
@@ -179,7 +179,7 @@ function newGame() {
 function guessCheck(UserGuess) {
 	UserGuess = UserGuess.toLowerCase();
     //This checks to see if the User Guess input was found in the array or not
-    if (gameWord.name.toLowerCase().indexOf(UserGuess) >= 0 && correctGuesses.indexOf(UserGuess) < 0) {
+    if (gameWord.name.indexOf(UserGuess) >= 0 && correctGuesses.indexOf(UserGuess) < 0) {
         
         correctIndex = [];
         for (var i = 0; i < gameWord.name.length; i++) {
@@ -208,17 +208,19 @@ function guessCheck(UserGuess) {
 }
 
 function gameProgress() {
+
+	console.log(guessesLeft + " This is in game progress function");
 	
-	if (blanks.indexOf("_") < 0 && chancesLeft > 0) {
+	if (blanks.indexOf("_") < 0 && guessesLeft > 0) {
 		alert("You Win");
 		wins++;
-		boxArtImage.innerHTML = wordBank.art;
+		boxArtImage.innerHTML = gameWord.art;
+		console.log(guessesLeft + " This is if win");
 		newGame();
 	}
-	else if (chancesLeft <= 0 && blanks.indexOf("_") >= 0) {
+	else if (guessesLeft <= 0 && blanks.indexOf("_") >= 0) {
 		losses++;
 		alert("You Lost");
-		chancesLeft = 6;
 		newGame();
 	}
 }
