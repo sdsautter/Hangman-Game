@@ -102,6 +102,7 @@ var boxArtImage = document.getElementById("boxArt");
 var alphabetBank = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "2", "3"]
 
 var displayIncorrectGuesses = document.getElementById('wrongGuesses');
+var displayPowerLight = document.getElementById('powerLight');
 var displayCorrectGuesses = document.getElementById('blankWord');
 var displayWins = document.getElementById('wins');
 var displayLosses = document.getElementById('losses');
@@ -115,6 +116,8 @@ function newGame() {
     chancesLeft.innerHTML = guessesLeft;
     gameWord = wordBank[Math.floor(Math.random() * wordBank.length)];
     console.log(gameWord);
+    displayPowerLight.innerHTML = "<img src='assets/images/power-on.png' alt='power n'>";
+
 
     for (var i = 0; i < gameWord.name.length; i++) {
         if (gameWord.name[i] === " ") {

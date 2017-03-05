@@ -41,5 +41,13 @@ h3, h4, h5 {
 }
 
 #boxArt img {
-	width: 100%;
+	width: 90%;
+}
+
+#startBtn, #resetBtn {
+	background-color: #848386;
+	color: #a4423f;
+	font-family: Nintendo;
+	font-size: 150%;
+	
 }
