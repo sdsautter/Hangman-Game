@@ -4,7 +4,7 @@
 
 body {
 	background-image: url('../images/bg-stars.jpg');
-	color: fuchsia;
+	color: white;
 }
 
 h1 {
@@ -25,6 +25,10 @@ h3, h4, h5 {
 	color: #fec3b7;
 	text-shadow: 0 3px black;
 
+}
+
+#wrongGuesses {
+	font-size: 125%;
 }
 
 #hangmanGame h3 {
