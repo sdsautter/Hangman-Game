@@ -51,13 +51,28 @@ h3, h4, h5 {
 	width: 90%;
 }
 
+#winOrLose, #playAgain {
+	font-family: Mario;
+	font-size: 2em;
+	color: white;
+	text-align: center;
+}
+
 #startBtn, #resetBtn {
-	/*background-color: #848386;*/
-	/*color: #a4423f;*/
+	background-color: #848386;
+	color: #a4423f;
 	font-family: Nintendo;
-	font-size: 150%;
+	font-size: 150%;	
+}
+
+#playAgain p {
+	background-color: #848386;
+	color: #a4423f;
+	font-family: Nintendo;
+	font-size: .8em;
 	
 }
+
 #startBtn img, #resetBtn img {
 	max-width: 100%;
-}
+ 
