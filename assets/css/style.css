@@ -78,6 +78,10 @@ h3, h4, h5 {
 	max-width: 80%;
 }
 
+#NEStitle {
+	background-color: black;
+}
+
 #winOrLose, #playAgain {
 	font-family: Mario;
 	font-size: 2em;
