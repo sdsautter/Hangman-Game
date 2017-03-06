@@ -227,9 +227,10 @@ function gameProgress() {
 
 
     if (blanks.indexOf("_") < 0 && guessesLeft > 0) {
+        wins++;
+        displayWins.innerHTML = wins;    	
         displayWinOrLose.innerHTML = "You Won!";
         displayPlayagain.innerHTML = "<p>Play Again</p>";
-        wins++;
         winSound.play();
         displayBoxArt.innerHTML = gameWord.art;
     	correctGuesses = [];
@@ -239,6 +240,7 @@ function gameProgress() {
         
     } else if (guessesLeft <= 0 && blanks.indexOf("_") >= 0) {
         losses++;
+        displayLosses.innerHTML = losses;
         loseSound.play();
         displayWinOrLose.innerHTML = "You Lose!";
         displayHungMario.innerHTML = "<img src='assets/images/0-chances-left.png' alt='Hangman Progress'>";
