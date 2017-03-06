@@ -103,6 +103,13 @@ var alphabetBank = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", 
 var gameStart = false;
 var gameOver = false;
 
+var loseSound = new Audio('assets/sounds/smb_mariodie.mp3');
+var winSound = new Audio('assets/sounds/smb_stage_clear.mp3');
+var powerOffSound = new Audio('assets/sounds/smb_gameover.mp3');
+var powerOnSound = new Audio('assets/sounds/smb_powerup.mp3');
+var coinSound = new Audio('assets/sounds/smb_coin.mp3');
+var blockSound = new Audio('assets/sounds/smb_breakblock.mp3');
+
 
 var displayIncorrectGuesses = document.getElementById('wrongGuesses');
 var displayPowerLight = document.getElementById('powerLight');
@@ -135,10 +142,12 @@ function powerOff() {
     wins = 0;
     losses = 0;
     guessesLeft = 6;
+    powerOffSound.play();
 
 }
 
 function newGame() {
+	powerOnSound.play();
     gameWord = 0;
     guessesLeft = 6;
     gameOver = false;
@@ -198,6 +207,7 @@ function guessCheck(UserGuess) {
         }
 
         displayCorrectGuesses.textContent = blanks.join(" ");
+        coinSound.play();
 
 
     } else if (gameWord.name.indexOf(UserGuess) < 0 && alphabetBank.indexOf(UserGuess) >= 0 && incorrectGuesses.indexOf(UserGuess) < 0 && gameOver === false) {
@@ -206,6 +216,7 @@ function guessCheck(UserGuess) {
         document.getElementById("hungMario").innerHTML = "<img src='assets/images/" + guessesLeft + "-chances-left.png' alt='Hangman Progress'>";
         incorrectGuesses.push(UserGuess);
         displayIncorrectGuesses.innerHTML = incorrectGuesses.join(" ");
+        blockSound.play();
     }
 
 
@@ -219,6 +230,7 @@ function gameProgress() {
         displayWinOrLose.innerHTML = "You Won!";
         displayPlayagain.innerHTML = "<p>Play Again</p>";
         wins++;
+        winSound.play();
         displayBoxArt.innerHTML = gameWord.art;
     	correctGuesses = [];
     	guessesLeft = 0;
@@ -227,6 +239,7 @@ function gameProgress() {
         
     } else if (guessesLeft <= 0 && blanks.indexOf("_") >= 0) {
         losses++;
+        loseSound.play();
         displayWinOrLose.innerHTML = "You Lose!";
         displayHungMario.innerHTML = "<img src='assets/images/0-chances-left.png' alt='Hangman Progress'>";
         displayPlayagain.innerHTML = "<p>Play Again</p>";
