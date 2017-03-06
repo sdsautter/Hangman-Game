@@ -54,7 +54,8 @@ h3, h4, h5 {
 
 
 #wrongGuesses {
-	font-size: 125%;
+	font-size: 130%;
+	text-align: justify;
 }
 
 #hangmanGame h3 {

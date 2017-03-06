@@ -211,11 +211,11 @@ function guessCheck(UserGuess) {
         coinSound.play();
 
 
-    } else if (gameWord.name.indexOf(UserGuess) < 0 && alphabetBank.indexOf(UserGuess) >= 0 && incorrectGuesses.indexOf(UserGuess) < 0 && gameOver === false) {
+    } else if (gameWord.name.indexOf(UserGuess) < 0 && alphabetBank.indexOf(UserGuess) >= 0 && incorrectGuesses.indexOf(UserGuess.toUpperCase()) < 0 && gameOver === false) {
         guessesLeft = guessesLeft - 1;
         chancesLeft.innerHTML = guessesLeft;
         document.getElementById("hungMario").innerHTML = "<img src='assets/images/" + guessesLeft + "-chances-left.png' alt='Hangman Progress'>";
-        incorrectGuesses.push(UserGuess);
+        incorrectGuesses.push(UserGuess.toUpperCase());
         displayIncorrectGuesses.innerHTML = incorrectGuesses.join(" ");
         blockSound.play();
     }
