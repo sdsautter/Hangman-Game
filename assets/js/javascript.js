@@ -18,25 +18,25 @@ var wordBank = [{
     art: "<img src='assets/images/donkey-kong-jr.jpg'>"
 }, {
     name: "Double Dragon II\: The Revenge",
-    art: ""
+    art: "<img src='assets/images/double-dragon.jpg'>"
 }, {
-    name: "Dr\. Mario",
-    art: ""
+    name: "Dr Mario",
+    art: "<img src='assets/images/dr-mario.jpg'>"
 }, {
     name: "Excitebike",
     art: "<img src='assets/images/excitebike.jpg'>"
 }, {
     name: "Final Fantasy",
-    art: ""
+    art: "<img src='assets/images/final-fantasy.jpg'>"
 }, {
     name: "Galaga",
-    art: ""
+    art: "<img src='assets/images/galaga.jpg'>"
 }, {
     name: "Ghosts\'n Goblins",
-    art: ""
+    art: "<img src='assets/images/ghosts-n-goblins.jpg'>"
 }, {
     name: "Gradius",
-    art: ""
+    art: "<img src='assets/images/gradius.jpg'>"
 }, {
     name: "Ice Climber",
     art: "<img src='assets/images/ice-climber.jpg'>"
@@ -45,49 +45,49 @@ var wordBank = [{
     art: "<img src='assets/images/kid-icarus.jpg'>"
 }, {
     name: "Kirby\'s Adventure",
-    art: ""
+    art: "<img src='assets/images/kirby.jpg'>"
 }, {
     name: "Mario Bros",
     art: "<img src='assets/images/mario-bros.jpg'>"
 }, {
     name: "Mega Man 2",
-    art: ""
+    art: "<img src='assets/images/mega-man-2.jpg'>"
 }, {
     name: "Metroid",
     art: "<img src='assets/images/metroid.jpg'>"
 }, {
     name: "Ninja Gaiden",
-    art: ""
+    art: "<img src='assets/images/ninja-gaiden.png'>"
 }, {
     name: "Pac\-Man",
-    art: ""
+    art: "<img src='assets/images/pac-man.jpg'>"
 }, {
-    name: "Punch\-Out\! featuring Mr\. Dream",
-    art: ""
+    name: "Punch\-Out\! featuring Mr Dream",
+    art: "<img src='assets/images/punch-out.png'>"
 }, {
     name: "Startropics",
-    art: ""
+    art: "<img src='assets/images/startropics.jpg'>"
 }, {
     name: "Super C",
-    art: ""
+    art: "<img src='assets/images/super-c.png'>"
 }, {
     name: "Super Mario Bros",
     art: "<img src='assets/images/super-mario-bros.jpg'>"
 }, {
     name: "Super Mario Bros 2",
-    art: ""
+    art: "<img src='assets/images/mario2.jpg'>"
 }, {
     name: "Super Mario Bros 3",
-    art: ""
+    art: "<img src='assets/images/mario3.jpg'>"
 }, {
     name: "Tecmo Bowl",
-    art: ""
+    art: "<img src='assets/images/tecmo-bowl.jpg'>"
 }, {
     name: "The Legend of Zelda",
-    art: ""
+    art: "<img src='assets/images/zelda.jpg'>"
 }, {
     name: "Zelda II\: the Adventure of Link",
-    art: ""
+    art: "<img src='assets/images/zelda2.jpg'>"
 }];
 
 var gameWord = 0;
@@ -150,7 +150,6 @@ function newGame() {
     displayLosses.innerHTML = losses;
     displayChances.innerHTML = guessesLeft;
     gameWord = wordBank[Math.floor(Math.random() * wordBank.length)];
-    console.log(gameWord);
     displayPowerLight.innerHTML = "<img src='assets/images/power-on.png' alt='power n'>";
     displayWinOrLose.innerHTML = "";
     displayPlayagain.innerHTML = "";
@@ -166,8 +165,6 @@ function newGame() {
             blanks.push("\'");
         } else if (gameWord.name[i] === "\:") {
             blanks.push("\:");
-        } else if (gameWord.name[i] === "\.") {
-            blanks.push("\.");
         } else if (gameWord.name[i] === "\-") {
             blanks.push("\-");
         } else if (gameWord.name[i] === "\!") {
@@ -217,7 +214,6 @@ function guessCheck(UserGuess) {
 
 function gameProgress() {
 
-    console.log(guessesLeft + " This is in game progress function");
 
     if (blanks.indexOf("_") < 0 && guessesLeft > 0) {
         displayWinOrLose.innerHTML = "You Won!";
