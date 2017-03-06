@@ -71,6 +71,11 @@ h3, h4, h5 {
 
 #boxArt img {
 	width: 90%;
+	max-width: 100%;
+}
+
+#hangmanImg img {
+	max-width: 80%;
 }
 
 #winOrLose, #playAgain {
@@ -78,6 +83,11 @@ h3, h4, h5 {
 	font-size: 2em;
 	color: white;
 	text-align: center;
+}
+
+#winOrLose {
+	font-family: PressStart;
+	font-size: 1.5em;
 }
 
 #startBtn, #resetBtn {
