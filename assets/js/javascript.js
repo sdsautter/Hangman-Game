@@ -133,6 +133,7 @@ function powerOff() {
     displayChances.innerHTML = "";
     displayHungMario.innerHTML = "";
     displayPlayagain.innerHTML = "";
+    displayWinOrLose.innerHTML = "";
     gameStart = false;
     gameWord = 0;
     blanks = [];
