@@ -21,7 +21,7 @@ var wordBank = [{
     art: "<img src='assets/images/double-dragon.jpg'>"
 }, {
     name: "Dr Mario",
-    art: "<img src='assets/images/dr-mario.jpg'>"
+    art: "<img src='assets/images/Dr-Mario.jpg'>"
 }, {
     name: "Excitebike",
     art: "<img src='assets/images/excitebike.jpg'>"
@@ -154,7 +154,8 @@ function powerOff() {
 
 var hangman = {
     newGame: function() {
-    	if (wordBank.length >= 1) { 
+        if (wordBank.length >= 1) { 
+        
         powerOnSound.play();
 
         gameIndex = Math.floor(Math.random() * wordBank.length);
@@ -204,6 +205,7 @@ var hangman = {
 	displayHungMario.innerHTML = "";
 	displayCorrectGuesses.innerHTML = "";
 	gameOverSound.play();
+    gameOver = true;
 }
 
 
