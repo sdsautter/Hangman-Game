@@ -102,6 +102,8 @@ var boxArtImage = document.getElementById("boxArt");
 var alphabetBank = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "2", "3"]
 var gameStart = false;
 var gameOver = false;
+var gameIndex = 0;
+
 
 var loseSound = new Audio('assets/sounds/smb_mariodie.mp3');
 var winSound = new Audio('assets/sounds/smb_stage_clear.mp3');
@@ -147,124 +149,143 @@ function powerOff() {
 
 }
 
-function newGame() {
-	powerOnSound.play();
-    gameWord = 0;
-    guessesLeft = 6;
-    gameOver = false;
-    blanks = [];
-    correctGuesses = [];
-    incorrectGuesses = [];
-    correctIndex = [];
-    displayWins.innerHTML = wins;
-    displayLosses.innerHTML = losses;
-    displayChances.innerHTML = guessesLeft;
-    gameWord = wordBank[Math.floor(Math.random() * wordBank.length)];
-    displayPowerLight.innerHTML = "<img src='assets/images/power-on.png' alt='power n'>";
-    displayWinOrLose.innerHTML = "";
-    displayPlayagain.innerHTML = "";
-    displayIncorrectGuesses.innerHTML = "";
-    gameStart = true;
+var hangman = {
+    newGame: function() {
+    	if (wordBank.length >= 1) { 
+        powerOnSound.play();
 
+        gameIndex = Math.floor(Math.random() * wordBank.length);
 
-
-    for (var i = 0; i < gameWord.name.length; i++) {
-        if (gameWord.name[i] === " ") {
-            blanks.push("\u00A0");
-        } else if (gameWord.name[i] === "\'") {
-            blanks.push("\'");
-        } else if (gameWord.name[i] === "\:") {
-            blanks.push("\:");
-        } else if (gameWord.name[i] === "\-") {
-            blanks.push("\-");
-        } else if (gameWord.name[i] === "\!") {
-            blanks.push("\!");
-        } else {
-            blanks.push("_");
-        }
-    }
-
-
-    displayCorrectGuesses.textContent = blanks.join(" ");
-
-    displayHungMario.innerHTML = "<img src='assets/images/" + guessesLeft + "-chances-left.png' alt='Hangman Progress'>";
-}
-
-
-function guessCheck(UserGuess) {
-    UserGuess = UserGuess.toLowerCase();
-    //This checks to see if the User Guess input was found in the array or not
-    if (gameWord.name.toLowerCase().indexOf(UserGuess) >= 0 && correctGuesses.indexOf(UserGuess) < 0 && gameOver === false) {
-
+        gameWord = 0;
+        guessesLeft = 6;
+        gameOver = false;
+        blanks = [];
+        correctGuesses = [];
+        incorrectGuesses = [];
         correctIndex = [];
+        displayWins.innerHTML = wins;
+        displayLosses.innerHTML = losses;
+        displayChances.innerHTML = guessesLeft;
+        gameWord = wordBank[gameIndex];
+        console.log(gameWord);
+
+        displayPowerLight.innerHTML = "<img src='assets/images/power-on.png' alt='power n'>";
+        displayWinOrLose.innerHTML = "";
+        displayPlayagain.innerHTML = "";
+        displayIncorrectGuesses.innerHTML = "";
+        gameStart = true;
+
+
+        console.log(wordBank.length);
         for (var i = 0; i < gameWord.name.length; i++) {
-            if (gameWord.name[i].toLowerCase() === UserGuess) {
-                correctIndex.push(i);
+            if (gameWord.name[i] === " ") {
+                blanks.push("\u00A0");
+            } else if (gameWord.name[i] === "\'") {
+                blanks.push("\'");
+            } else if (gameWord.name[i] === "\:") {
+                blanks.push("\:");
+            } else if (gameWord.name[i] === "\-") {
+                blanks.push("\-");
+            } else if (gameWord.name[i] === "\!") {
+                blanks.push("\!");
+            } else {
+                blanks.push("_");
             }
         }
 
-        for (var i = 0; i < correctIndex.length; i++) {
-            blanks[correctIndex[i]] = UserGuess;
-        }
 
         displayCorrectGuesses.textContent = blanks.join(" ");
-        coinSound.play();
 
+        displayHungMario.innerHTML = "<img src='assets/images/" + guessesLeft + "-chances-left.png' alt='Hangman Progress'>";
 
-    } else if (gameWord.name.indexOf(UserGuess) < 0 && alphabetBank.indexOf(UserGuess) >= 0 && incorrectGuesses.indexOf(UserGuess.toUpperCase()) < 0 && gameOver === false) {
-        guessesLeft = guessesLeft - 1;
-        chancesLeft.innerHTML = guessesLeft;
-        document.getElementById("hungMario").innerHTML = "<img src='assets/images/" + guessesLeft + "-chances-left.png' alt='Hangman Progress'>";
-        incorrectGuesses.push(UserGuess.toUpperCase());
-        displayIncorrectGuesses.innerHTML = incorrectGuesses.join(" ");
-        blockSound.play();
-    }
-
-
-
+} else {
+	displayWinOrLose.innerHTML = "GAME OVER";
+	displayHungMario.innerHTML = "";
+	displayCorrectGuesses.innerHTML = "";
 }
 
-function gameProgress() {
+
+},
+
+        guessCheck: function(UserGuess) {
+            UserGuess = UserGuess.toLowerCase();
+            //This checks to see if the User Guess input was found in the array or not
+            if (gameWord.name.toLowerCase().indexOf(UserGuess) >= 0 && correctGuesses.indexOf(UserGuess) < 0 && gameOver === false) {
+
+                correctIndex = [];
+                for (var i = 0; i < gameWord.name.length; i++) {
+                    if (gameWord.name[i].toLowerCase() === UserGuess) {
+                        correctIndex.push(i);
+                    }
+                }
+
+                for (var i = 0; i < correctIndex.length; i++) {
+                    blanks[correctIndex[i]] = UserGuess;
+                }
+
+                displayCorrectGuesses.textContent = blanks.join(" ");
+                coinSound.play();
 
 
-    if (blanks.indexOf("_") < 0 && guessesLeft > 0) {
-        wins++;
-        displayWins.innerHTML = wins;    	
-        displayWinOrLose.innerHTML = "You Won!";
-        displayPlayagain.innerHTML = "<p>Play Again</p>";
-        winSound.play();
-        displayBoxArt.innerHTML = gameWord.art;
-    	correctGuesses = [];
+            } else if (gameWord.name.indexOf(UserGuess) < 0 && alphabetBank.indexOf(UserGuess) >= 0 && incorrectGuesses.indexOf(UserGuess.toUpperCase()) < 0 && gameOver === false) {
+                guessesLeft = guessesLeft - 1;
+                chancesLeft.innerHTML = guessesLeft;
+                document.getElementById("hungMario").innerHTML = "<img src='assets/images/" + guessesLeft + "-chances-left.png' alt='Hangman Progress'>";
+                incorrectGuesses.push(UserGuess.toUpperCase());
+                displayIncorrectGuesses.innerHTML = incorrectGuesses.join(" ");
+                blockSound.play();
+            }
 
-    	//I made this 0 right here so you wouldn't keep getting wins for typing random letters after you won
-    	guessesLeft = 0;
-        gameOver = true;
-       
-        
-    } else if (guessesLeft <= 0 && blanks.indexOf("_") >= 0) {
-        losses++;
-        displayLosses.innerHTML = losses;
-        loseSound.play();
-        displayWinOrLose.innerHTML = "You Lose!";
-        displayHungMario.innerHTML = "<img src='assets/images/0-chances-left.png' alt='Hangman Progress'>";
-        displayPlayagain.innerHTML = "<p>Play Again</p>";
-        displayBoxArt.innerHTML = "<img src='assets/images/nes-classic-edition.png' alt='NES Classic'>";
-        guessesLeft = 6;
-        gameOver = true;
-        	        
+
+
+        },
+
+        gameProgress: function() {
+
+
+            if (blanks.indexOf("_") < 0 && guessesLeft > 0) {
+                wins++;
+                displayWins.innerHTML = wins;
+                displayWinOrLose.innerHTML = "You Won!";
+                displayPlayagain.innerHTML = "<p>Play Again</p>";
+                winSound.play();
+                displayBoxArt.innerHTML = gameWord.art;
+                correctGuesses = [];
+
+                //I made this 0 right here so you wouldn't keep getting wins for typing random letters after you won
+                guessesLeft = 0;
+                gameOver = true;
+                wordBank.splice(gameIndex, 1);
+
+
+
+
+            } else if (guessesLeft <= 0 && blanks.indexOf("_") >= 0) {
+                losses++;
+                displayLosses.innerHTML = losses;
+                loseSound.play();
+                displayWinOrLose.innerHTML = "You Lose!";
+                displayHungMario.innerHTML = "<img src='assets/images/0-chances-left.png' alt='Hangman Progress'>";
+                displayPlayagain.innerHTML = "<p>Play Again</p>";
+                displayBoxArt.innerHTML = "<img src='assets/images/nes-classic-edition.png' alt='NES Classic'>";
+                guessesLeft = 6;
+                gameOver = true;
+                wordBank.splice(gameIndex, 1);
+
+
+            }
+        }
     }
-}
-
 
 displayPlayagain.onclick = function() {
     if (gameOver === true) {
-    	newGame();
+        hangman.newGame();
     }
 };
 
 document.getElementById("startBtn").onclick = function() {
     if (gameStart === false) {
-        newGame();
+        hangman.newGame();
     } else if (gameStart === true) {
         powerOff();
     }
@@ -274,13 +295,13 @@ document.getElementById("startBtn").onclick = function() {
 document.getElementById("resetBtn").onclick = function() {
     if (gameStart === true) {
         powerOff();
-        newGame();
+        hangman.newGame();
     }
 };
 
 
 document.onkeyup = function(event) {
     var UserGuess = event.key;
-    guessCheck(UserGuess);
-    gameProgress();
+    hangman.guessCheck(UserGuess);
+    hangman.gameProgress();
 }
