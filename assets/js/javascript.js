@@ -111,6 +111,8 @@ var powerOffSound = new Audio('assets/sounds/smb_gameover.mp3');
 var powerOnSound = new Audio('assets/sounds/smb_powerup.mp3');
 var coinSound = new Audio('assets/sounds/smb_coin.mp3');
 var blockSound = new Audio('assets/sounds/smb_breakblock.mp3');
+var gameOverSound = new Audio('assets/sounds/smb_world_clear.mp3');
+
 
 
 var displayIncorrectGuesses = document.getElementById('wrongGuesses');
@@ -202,6 +204,7 @@ var hangman = {
 	displayWinOrLose.innerHTML = "GAME OVER";
 	displayHungMario.innerHTML = "";
 	displayCorrectGuesses.innerHTML = "";
+	gameOverSound.play();
 }
 
 
