@@ -112,6 +112,7 @@ var powerOnSound = new Audio('assets/sounds/smb_powerup.mp3');
 var coinSound = new Audio('assets/sounds/smb_coin.mp3');
 var blockSound = new Audio('assets/sounds/smb_breakblock.mp3');
 var gameOverSound = new Audio('assets/sounds/smb_world_clear.mp3');
+var almostDead = new Audio('assets/sounds/smb_warning.mp3');
 
 
 
@@ -169,7 +170,6 @@ var hangman = {
         displayLosses.innerHTML = losses;
         displayChances.innerHTML = guessesLeft;
         gameWord = wordBank[gameIndex];
-        console.log(gameWord);
 
         displayPowerLight.innerHTML = "<img src='assets/images/power-on.png' alt='power n'>";
         displayWinOrLose.innerHTML = "";
@@ -178,7 +178,6 @@ var hangman = {
         gameStart = true;
 
 
-        console.log(wordBank.length);
         for (var i = 0; i < gameWord.name.length; i++) {
             if (gameWord.name[i] === " ") {
                 blanks.push("\u00A0");
@@ -237,6 +236,9 @@ var hangman = {
                 incorrectGuesses.push(UserGuess.toUpperCase());
                 displayIncorrectGuesses.innerHTML = incorrectGuesses.join(" ");
                 blockSound.play();
+                if (guessesLeft === 1) {
+                	almostDead.play();
+                }
             }
 
 
