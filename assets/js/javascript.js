@@ -154,8 +154,13 @@ function powerOff() {
 
 var hangman = {
     newGame: function() {
+
+        gameOver = false;
+
+        gameStart = true;
+
         if (wordBank.length >= 1) { 
-        
+
         powerOnSound.play();
 
         gameIndex = Math.floor(Math.random() * wordBank.length);
@@ -204,8 +209,9 @@ var hangman = {
 	displayWinOrLose.innerHTML = "GAME OVER";
 	displayHungMario.innerHTML = "";
 	displayCorrectGuesses.innerHTML = "";
-	gameOverSound.play();
-    gameOver = true;
+	displayPlayagain.innerHTML = "";
+    gameOverSound.play();
+
 }
 
 
