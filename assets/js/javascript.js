@@ -235,6 +235,8 @@ function gameProgress() {
         winSound.play();
         displayBoxArt.innerHTML = gameWord.art;
     	correctGuesses = [];
+
+    	//I made this 0 right here so you wouldn't keep getting wins for typing random letters after you won
     	guessesLeft = 0;
         gameOver = true;
        
