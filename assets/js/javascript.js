@@ -259,6 +259,7 @@ var hangman = {
                 guessesLeft = 0;
                 gameOver = true;
                 wordBank.splice(gameIndex, 1);
+                document.getElementById("howToWrapper").innerHTML = "";
 
 
 
@@ -274,6 +275,8 @@ var hangman = {
                 guessesLeft = 6;
                 gameOver = true;
                 wordBank.splice(gameIndex, 1);
+                document.getElementById("howToWrapper").innerHTML = "";
+
 
 
             }
