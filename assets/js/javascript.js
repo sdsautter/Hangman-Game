@@ -134,6 +134,8 @@ var displayPlayagain = document.getElementById('playAgain');
 
 //This "turns off the game" when you press the power button by clearing everything.
 function powerOff() {
+    powerOffSound.play();
+
     displayPowerLight.innerHTML = "<img src='assets/images/power-off.png' alt='power n'>";
     displayCorrectGuesses.innerHTML = "";
     displayIncorrectGuesses.innerHTML = "";
@@ -144,6 +146,8 @@ function powerOff() {
     displayHungMario.innerHTML = "";
     displayPlayagain.innerHTML = "";
     displayWinOrLose.innerHTML = "";
+    
+    //Resets all the variables
     gameStart = false;
     gameWord = 0;
     blanks = [];
@@ -153,7 +157,14 @@ function powerOff() {
     wins = 0;
     losses = 0;
     guessesLeft = 6;
-    powerOffSound.play();
+    
+    for (var i = 0; i < splicedWord.length; i++) {
+
+        //This pushes all of the names that got taken from wordBank into a different array, and then the games are taken out of wordBank
+        wordBank.push(splicedWord[i]);
+        splicedWord.splice(i, 1);
+    }
+
 
 }
 
