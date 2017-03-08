@@ -98,6 +98,7 @@ var blanks = [];
 var correctGuesses = [];
 var incorrectGuesses = [];
 var correctIndex = [];
+var splicedWord = [];
 var boxArtImage = document.getElementById("boxArt");
 var alphabetBank = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "2", "3"]
 var gameStart = false;
@@ -211,6 +212,13 @@ var hangman = {
 	displayCorrectGuesses.innerHTML = "";
 	displayPlayagain.innerHTML = "";
     gameOverSound.play();
+    for (var i = 0; i < splicedWord.length; i++) {
+
+        wordBank.push(splicedWord[i]);
+        splicedWord.splice(i, 1);
+
+
+    }
 
 }
 
@@ -268,6 +276,7 @@ var hangman = {
                 //I made this 0 right here so you wouldn't keep getting wins for typing random letters after you won
                 guessesLeft = 0;
                 gameOver = true;
+                splicedWord.push(gameWord);
                 wordBank.splice(gameIndex, 1);
                 document.getElementById("howToWrapper").innerHTML = "";
 
@@ -284,6 +293,7 @@ var hangman = {
                 displayBoxArt.innerHTML = "<img src='assets/images/nes-classic-edition.png' alt='NES Classic'>";
                 guessesLeft = 6;
                 gameOver = true;
+                splicedWord.push(gameWord);
                 wordBank.splice(gameIndex, 1);
                 document.getElementById("howToWrapper").innerHTML = "";
 
