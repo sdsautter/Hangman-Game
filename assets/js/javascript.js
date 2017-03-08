@@ -1,3 +1,5 @@
+//All of the games found in the new NES CLassic Edition that came out in 2016
+
 var wordBank = [{
     name: "Balloon Fight",
     art: "<img src='assets/images/balloon-fight.jpg'>"
@@ -90,6 +92,8 @@ var wordBank = [{
     art: "<img src='assets/images/zelda2.jpg'>"
 }];
 
+
+//setting up my global variables that I'll need
 var gameWord = 0;
 var wins = 0;
 var losses = 0;
@@ -105,7 +109,7 @@ var gameStart = false;
 var gameOver = false;
 var gameIndex = 0;
 
-
+//The audio clips I'll be calling later.
 var loseSound = new Audio('assets/sounds/smb_mariodie.mp3');
 var winSound = new Audio('assets/sounds/smb_stage_clear.mp3');
 var powerOffSound = new Audio('assets/sounds/smb_gameover.mp3');
@@ -116,7 +120,7 @@ var gameOverSound = new Audio('assets/sounds/smb_world_clear.mp3');
 var almostDead = new Audio('assets/sounds/smb_warning.mp3');
 
 
-
+//Shortcut way for me to call an HTML id
 var displayIncorrectGuesses = document.getElementById('wrongGuesses');
 var displayPowerLight = document.getElementById('powerLight');
 var displayCorrectGuesses = document.getElementById('blankWord');
@@ -128,7 +132,7 @@ var displayHungMario = document.getElementById('hungMario');
 var displayWinOrLose = document.getElementById('winOrLose');
 var displayPlayagain = document.getElementById('playAgain');
 
-
+//This "turns off the game" when you press the power button by clearing everything.
 function powerOff() {
     displayPowerLight.innerHTML = "<img src='assets/images/power-off.png' alt='power n'>";
     displayCorrectGuesses.innerHTML = "";
@@ -160,15 +164,17 @@ var hangman = {
 
         gameStart = true;
 
+        //This will when as long as there are games left in the game array
         if (wordBank.length >= 1) { 
 
         powerOnSound.play();
 
+        //The random number used for referencing the wordBank array's index
         gameIndex = Math.floor(Math.random() * wordBank.length);
 
+        //Reset all the variables for the new game
         gameWord = 0;
         guessesLeft = 6;
-        gameOver = false;
         blanks = [];
         correctGuesses = [];
         incorrectGuesses = [];
@@ -185,6 +191,7 @@ var hangman = {
         gameStart = true;
 
 
+        //A loop to push out special characters and underscores to actually play the game
         for (var i = 0; i < gameWord.name.length; i++) {
             if (gameWord.name[i] === " ") {
                 blanks.push("\u00A0");
@@ -201,11 +208,13 @@ var hangman = {
             }
         }
 
-
+        //Makes the blanks display on the screen before you press any keys
         displayCorrectGuesses.textContent = blanks.join(" ");
 
+        //Updates the picture of Mario being hung depending on how many chances are left
         displayHungMario.innerHTML = "<img src='assets/images/" + guessesLeft + "-chances-left.png' alt='Hangman Progress'>";
 
+  //This is the game over screen when the wordBank array is depleted.
 } else {
 	displayWinOrLose.innerHTML = "GAME OVER";
 	displayHungMario.innerHTML = "";
@@ -214,9 +223,11 @@ var hangman = {
     gameOverSound.play();
     for (var i = 0; i < splicedWord.length; i++) {
 
+        //This pushes all of the names that got taken from wordBank into a different array, and then the games are taken out of wordBank
         wordBank.push(splicedWord[i]);
         splicedWord.splice(i, 1);
 
+        //These messages appear depending on your score.
         if (wins === 30) {
             displayHungMario.innerHTML = "<p>Holy cow!</p>" + 
             "<p>You got all 30 games correct! You either know your NES CLassic, or you're incredible lucky. I suppose you could also be skilled at hangman, but lets be real here.</p>" +
