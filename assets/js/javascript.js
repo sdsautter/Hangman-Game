@@ -171,12 +171,13 @@ function powerOff() {
 var hangman = {
     newGame: function() {
 
-        gameOver = false;
 
         gameStart = true;
 
         //This will when as long as there are games left in the game array
-        if (wordBank.length >= 1) { 
+       
+
+        gameOver = false;
 
         powerOnSound.play();
 
@@ -226,51 +227,15 @@ var hangman = {
         displayHungMario.innerHTML = "<img src='assets/images/" + guessesLeft + "-chances-left.png' alt='Hangman Progress'>";
 
   //This is the game over screen when the wordBank array is depleted.
-} else {
-	displayWinOrLose.innerHTML = "GAME OVER";
-	displayHungMario.innerHTML = "";
-	displayCorrectGuesses.innerHTML = "";
-	displayPlayagain.innerHTML = "";
-    gameOverSound.play();
-    for (var i = 0; i < splicedWord.length; i++) {
-
-        //This pushes all of the names that got taken from wordBank into a different array, and then the games are taken out of wordBank
-        wordBank.push(splicedWord[i]);
-        splicedWord.splice(i, 1);
-
-        //These messages appear depending on your score.
-        if (wins === 30) {
-            displayHungMario.innerHTML = "<p>Holy cow!</p>" + 
-            "<p>You got all 30 games correct! You either know your NES CLassic, or you're incredible lucky. I suppose you could also be skilled at hangman, but lets be real here.</p>" +
-            "<p>Congratulations!</p>";
-        } else if (wins >= 25) {
-            displayHungMario.innerHTML = "<p>You got " + wins + " correct. That's pretty good!</p>" +
-            "<p>I know you must be disappointed that you didn't get all 30. It's ok. You'll get them next time. You had a decent showing!</p>";
-        } else if (wins >= 18) {
-            displayHungMario.innerHTML = "<p>" + wins + " correct isn't horrible.</p>" +
-                "<p>I've definitely seen worse. You obviously show some recollection of NES games, and I refuse to give up hope on you just yet</p>";
-        } else if (wins >= 10) {
-            displayHungMario.innerHTML = "<p>Come on! You only got " + wins + " right!?</p>" +
-                "<p>You're barely even trying. I feel like you could have done just as good if you didn't know anything and were just pressing random buttons like a madman. Are you some sort of madman?</p>";
-        } else if (wins >= 5) {
-            displayHungMario.innerHTML = "<p>" + wins + " wins? Really?</p>" +
-            "<p>I understand if you're not a fan of Nintendo. Not all of us are. Sure, maybe all the cool kids are, but not everyone can be a cool kid.</p>";
-        } else if (wins >= 0 ) {
-            displayHungMario.innerHTML = "<p>" + wins + "? " + wins + " is your score?</p>" +
-                "<p>You had to try to do this bad. Way to go. No one is impressed. Just go home. You're probably no fun at parties either.</p>";
-        }
 
 
-    }
-
-}
 
 
 },
 
         guessCheck: function(UserGuess) {
             UserGuess = UserGuess.toLowerCase();
-            //This checks to see if the User Guess input was found in the array or not
+            //This checks to see if the User Guess input was found in the array or not, and that the game is not over.
             if (gameWord.name.toLowerCase().indexOf(UserGuess) >= 0 && correctGuesses.indexOf(UserGuess) < 0 && gameOver === false) {
 
                 correctIndex = [];
@@ -304,6 +269,48 @@ var hangman = {
 
         },
 
+        endGame: function() {
+            if (wordBank.length === 0) {
+                displayWinOrLose.innerHTML = "GAME OVER";
+    displayHungMario.innerHTML = "";
+    displayCorrectGuesses.innerHTML = "";
+    displayPlayagain.innerHTML = "";
+    gameOverSound.play();
+    for (var i = 0; i < splicedWord.length; i++) {
+
+        //This pushes all of the names that got taken from wordBank into a different array, and then the games are taken out of wordBank
+        wordBank.push(splicedWord[i]);
+        splicedWord.splice(i, 1);
+
+        //These messages appear depending on your score.
+        if (wins === 30) {
+            displayHungMario.innerHTML = "<p>Holy cow!</p>" + 
+            "<p>You got all 30 games correct! You either know your NES CLassic, or you're incredible lucky. I suppose you could also be skilled at hangman, but lets be real here.</p>" +
+            "<p>Congratulations!</p>";
+        } else if (wins >= 25) {
+            displayHungMario.innerHTML = "<p>You got " + wins + " correct. That's pretty good!</p>" +
+            "<p>I know you must be disappointed that you didn't get all 30. It's ok. You'll get them next time. You had a decent showing!</p>";
+        } else if (wins >= 18) {
+            displayHungMario.innerHTML = "<p>" + wins + " correct isn't horrible.</p>" +
+                "<p>I've definitely seen worse. You obviously show some recollection of NES games, and I refuse to give up hope on you just yet</p>";
+        } else if (wins >= 10) {
+            displayHungMario.innerHTML = "<p>Come on! You only got " + wins + " right!?</p>" +
+                "<p>You're barely even trying. I feel like you could have done just as good if you didn't know anything and were just pressing random buttons like a madman. Are you some sort of madman?</p>";
+        } else if (wins >= 5) {
+            displayHungMario.innerHTML = "<p>" + wins + " wins? Really?</p>" +
+            "<p>I understand if you're not a fan of Nintendo. Not all of us are. Sure, maybe all the cool kids are, but not everyone can be a cool kid.</p>";
+        } else if (wins >= 0 ) {
+            displayHungMario.innerHTML = "<p>" + wins + "? " + wins + " is your score?</p>" +
+                "<p>You had to try to do this bad. Way to go. No one is impressed. Just go home. You're probably no fun at parties either.</p>";
+        }
+
+
+    }
+
+}
+            },
+        
+
         gameProgress: function() {
 
 
@@ -324,6 +331,7 @@ var hangman = {
                 document.getElementById("howToWrapper").innerHTML = "";
 
 
+                hangman.endGame();
 
 
             } else if (guessesLeft <= 0 && blanks.indexOf("_") >= 0) {
@@ -340,6 +348,7 @@ var hangman = {
                 wordBank.splice(gameIndex, 1);
                 document.getElementById("howToWrapper").innerHTML = "";
 
+                hangman.endGame();
 
 
             }
